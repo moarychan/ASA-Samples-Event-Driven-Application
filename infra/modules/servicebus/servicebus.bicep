@@ -5,6 +5,7 @@ param keyVaultName string
 param secretName string
 param subscriptionId string
 param resourceGroupName string
+param asaServicePlanName string
 
 resource serviceBusNamespace 'Microsoft.ServiceBus/namespaces@2022-10-01-preview' = {
   name: serviceBusNamespaceName
@@ -53,7 +54,7 @@ resource serviceBusQueue_02 'Microsoft.ServiceBus/namespaces/queues@2022-01-01-p
   }
 }
 
-module serviceBusConnectionStringSecret '../keyvault/keyvault-secret.bicep' = {
+module serviceBusConnectionStringSecret '../keyvault/keyvault-secret.bicep' = if (!(asaServicePlanName == 'StandardGen2')) {
   name: 'service-bus-cs-secret'
   params: {
   	keyVaultName: keyVaultName
@@ -61,3 +62,6 @@ module serviceBusConnectionStringSecret '../keyvault/keyvault-secret.bicep' = {
     secretValue: listKeys('${serviceBusNamespace.id}/AuthorizationRules/RootManageSharedAccessKey', serviceBusNamespace.apiVersion).primaryConnectionString
   }
 }
+
+output serviceBusNamespaceId string = serviceBusNamespace.id
+output serviceBusNamespaceApiVersion string = serviceBusNamespace.apiVersion

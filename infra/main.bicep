@@ -15,6 +15,7 @@ param principalId string = ''
 @description('Relative Path of ASA Jar')
 param relativePath string
 
+param asaServicePlanName string
 param logAnalyticsName string = ''
 param applicationInsightsName string = ''
 param applicationInsightsDashboardName string = ''
@@ -24,6 +25,7 @@ var resourceToken = toLower(uniqueString(subscription().id, environmentName, loc
 var keyVaultName = '${abbrs.keyVaultVaults}${resourceToken}'
 var serviceBusNamespaceName = '${environmentName}-${abbrs.serviceBusNamespaces}${resourceToken}'
 var asaInstanceName = '${environmentName}-${abbrs.springApps}${resourceToken}'
+var asaManagedEnvironmentName = '${environmentName}-${abbrs.appContainerAppsManagedEnvironment}${resourceToken}'
 var appName = 'simple-event-driven-app'
 var serviceBusConnectionStringSecretName = 'SERVICE-BUS-CONNECTION-STRING'
 var tags = {
@@ -37,7 +39,7 @@ resource rg 'Microsoft.Resources/resourceGroups@2021-04-01' = {
   tags: tags
 }
 
-module keyVault 'modules/keyvault/keyvault.bicep' = {
+module keyVault 'modules/keyvault/keyvault.bicep' = if (!(asaServicePlanName == 'StandardGen2')) {
   name: '${deployment().name}--kv'
   scope: resourceGroup(rg.name)
   params: {
@@ -55,7 +57,8 @@ module serviceBus 'modules/servicebus/servicebus.bicep' = {
     serviceBusNamespaceName: serviceBusNamespaceName
     location: location
     tags: tags
-    keyVaultName: keyVault.outputs.name
+    keyVaultName: (asaServicePlanName == 'StandardGen2') ? '' : keyVault.outputs.name
+    asaServicePlanName: asaServicePlanName
     secretName: serviceBusConnectionStringSecretName
     subscriptionId: subscription().id
     resourceGroupName: rg.name
@@ -70,18 +73,22 @@ module springApps 'modules/springapps/springapps.bicep' = {
     appName: appName
     tags: union(tags, { 'azd-service-name': appName })
     asaInstanceName: asaInstanceName
+    asaServicePlanName: asaServicePlanName
+    asaManagedEnvironmentName: asaManagedEnvironmentName
     relativePath: relativePath
-    keyVaultName: keyVault.outputs.name
+    keyVaultName: (asaServicePlanName == 'StandardGen2') ? '' : keyVault.outputs.name
     appInsightName: monitoring.outputs.applicationInsightsName
     laWorkspaceResourceId: monitoring.outputs.logAnalyticsWorkspaceId
+    serviceBusNamespaceId: serviceBus.outputs.serviceBusNamespaceId
+    serviceBusNamespaceApiVersion: serviceBus.outputs.serviceBusNamespaceApiVersion
   }
 }
 
-module apiKeyVaultAccess './modules/keyvault/keyvault-access.bicep' = {
+module apiKeyVaultAccess './modules/keyvault/keyvault-access.bicep' = if (!(asaServicePlanName == 'StandardGen2')) {
   name: 'api-keyvault-access'
   scope: resourceGroup(rg.name)
   params: {
-    keyVaultName: keyVault.outputs.name
+    keyVaultName: (asaServicePlanName == 'StandardGen2') ? '' : keyVault.outputs.name
     principalId: springApps.outputs.identityPrincipalId
   }
 }
@@ -99,5 +106,5 @@ module monitoring './modules/monitor/monitoring.bicep' = {
   }
 }
 
-output AZURE_KEY_VAULT_NAME string = keyVault.outputs.name
-output AZURE_KEY_VAULT_ENDPOINT string = keyVault.outputs.endpoint
+output AZURE_KEY_VAULT_NAME string = (asaServicePlanName == 'StandardGen2') ? '' : keyVault.outputs.name
+output AZURE_KEY_VAULT_ENDPOINT string = (asaServicePlanName == 'StandardGen2') ? '' : keyVault.outputs.endpoint
