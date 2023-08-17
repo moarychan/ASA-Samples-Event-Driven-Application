@@ -320,9 +320,6 @@
                 },
                 "mode": "Incremental",
                 "parameters": {
-                  "logAnalyticsName": {
-                    "value": "[parameters('logAnalyticsName')]"
-                  },
                   "applicationInsightsName": {
                     "value": "[parameters('applicationInsightsName')]"
                   },
@@ -343,9 +340,6 @@
                   "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
                   "contentVersion": "1.0.0.0",
                   "parameters": {
-                    "logAnalyticsName": {
-                      "type": "string"
-                    },
                     "applicationInsightsName": {
                       "type": "string"
                     },
@@ -395,6 +389,9 @@
                           },
                           "applicationInsightsName": {
                             "value": "[parameters('applicationInsightsName')]"
+                          },
+                          "tags": {
+                            "value": "[parameters('tags')]"
                           }
                         },
                         "template": {
