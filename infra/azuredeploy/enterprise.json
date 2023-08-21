@@ -115,7 +115,6 @@
           "applicationConfigurationService": {},
           "serviceRegistry": {}
         },
-        "public": true,
         "httpsOnly": false,
         "temporaryDisk": {
           "sizeInGB": 5,
