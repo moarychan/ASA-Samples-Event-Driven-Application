@@ -186,6 +186,9 @@
     "asaInstanceName": "[format('{0}{1}', variables('abbrs').springApps, variables('resourceToken'))]",
     "appName": "simple-event-driven-app",
     "serviceBusNamespaceName": "[format('{0}{1}', variables('abbrs').serviceBusNamespaces, variables('resourceToken'))]",
+    "logAnalyticsName": "[if(not(empty(parameters('logAnalyticsName'))), createObject('value', parameters('logAnalyticsName')), createObject('value', format('{0}{1}', variables('abbrs').operationalInsightsWorkspaces, variables('resourceToken'))))]",
+    "applicationInsightsName": "[if(not(empty(parameters('applicationInsightsName'))), createObject('value', parameters('applicationInsightsName')), createObject('value', format('{0}{1}', variables('abbrs').insightsComponents, variables('resourceToken'))))]",
+    "applicationInsightsDashboardName": "[if(not(empty(parameters('applicationInsightsDashboardName'))), createObject('value', parameters('applicationInsightsDashboardName')), createObject('value', format('{0}{1}', variables('abbrs').portalDashboards, variables('resourceToken'))))]",
     "userAssignedManagedIdentityName": "[format('{0}{1}', variables('abbrs').managedIdentityUserAssignedIdentities, variables('resourceToken'))]",
     "tags": {
       "spring-cloud-azure": "true",
@@ -305,13 +308,13 @@
         "mode": "Incremental",
         "parameters": {
           "logAnalyticsName": {
-            "value": "[parameters('logAnalyticsName')]"
+            "value": "[variables('logAnalyticsName')]"
           },
           "applicationInsightsName": {
-            "value": "[parameters('applicationInsightsName')]"
+            "value": "[variables('applicationInsightsName')]"
           },
           "applicationInsightsDashboardName": {
-            "value": "[parameters('applicationInsightsDashboardName')]"
+            "value": "[variables('applicationInsightsDashboardName')]"
           },
           "location": {
             "value": "[parameters('location')]"
