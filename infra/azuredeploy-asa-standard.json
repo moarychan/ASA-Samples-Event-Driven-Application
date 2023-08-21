@@ -21,7 +21,7 @@
           }
         },
         "templateLink": {
-          "relativePath": "test.json",
+          "relativePath": "azuredeploy.json",
           "contentVersion":"1.0.0.0"
         }
       }
