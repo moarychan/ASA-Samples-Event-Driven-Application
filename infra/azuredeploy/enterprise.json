@@ -340,7 +340,6 @@
             "memory": "2Gi"
           },
           "environmentVariables": "[parameters('environmentVariables')]"
-          }
         },
         "source": {
           "type": "BuildResult",
