@@ -20,27 +20,6 @@
         "description": "Primary location for all resources."
       },
       "minLength": 1
-    },
-    "logAnalyticsName": {
-      "type": "string",
-      "defaultValue": "",
-      "metadata": {
-        "description": "The name for Log Analytics workspace."
-      }
-    },
-    "applicationInsightsName": {
-      "type": "string",
-      "defaultValue": "",
-      "metadata": {
-        "description": "The unique name of Application Insights."
-      }
-    },
-    "applicationInsightsDashboardName": {
-      "type": "string",
-      "defaultValue": "",
-      "metadata": {
-        "description": "The name of Application Insights Dashboard."
-      }
     }
   },
   "variables": {
@@ -186,9 +165,9 @@
     "asaInstanceName": "[format('{0}{1}', variables('abbrs').springApps, variables('resourceToken'))]",
     "appName": "simple-event-driven-app",
     "serviceBusNamespaceName": "[format('{0}{1}', variables('abbrs').serviceBusNamespaces, variables('resourceToken'))]",
-    "logAnalyticsName": "[if(not(empty(parameters('logAnalyticsName'))), createObject('value', parameters('logAnalyticsName')), createObject('value', format('{0}{1}', variables('abbrs').operationalInsightsWorkspaces, variables('resourceToken'))))]",
-    "applicationInsightsName": "[if(not(empty(parameters('applicationInsightsName'))), createObject('value', parameters('applicationInsightsName')), createObject('value', format('{0}{1}', variables('abbrs').insightsComponents, variables('resourceToken'))))]",
-    "applicationInsightsDashboardName": "[if(not(empty(parameters('applicationInsightsDashboardName'))), createObject('value', parameters('applicationInsightsDashboardName')), createObject('value', format('{0}{1}', variables('abbrs').portalDashboards, variables('resourceToken'))))]",
+    "logAnalyticsName": "[format('{0}{1}', variables('abbrs').operationalInsightsWorkspaces, variables('resourceToken'))]",
+    "applicationInsightsName": "[format('{0}{1}', variables('abbrs').insightsComponents, variables('resourceToken'))]",
+    "applicationInsightsDashboardName": "[format('{0}{1}', variables('abbrs').portalDashboards, variables('resourceToken'))]",
     "userAssignedManagedIdentityName": "[format('{0}{1}', variables('abbrs').managedIdentityUserAssignedIdentities, variables('resourceToken'))]",
     "tags": {
       "spring-cloud-azure": "true",
