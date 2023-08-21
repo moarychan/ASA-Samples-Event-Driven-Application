@@ -1839,6 +1839,54 @@
           "[extensionResourceId(format('/subscriptions/{0}/resourceGroups/{1}', subscription().subscriptionId, resourceGroup().name), 'Microsoft.Resources/deployments', format('{0}--sb', deployment().name))]"
         ]
       }
+    },
+    {
+      "condition": "[equals(parameters('plan'), 'enterprise')]",
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2022-09-01",
+      "name": "[format('{0}--ent', deployment().name)]",
+      "properties": {
+        "expressionEvaluationOptions": {
+          "scope": "inner"
+        },
+        "mode": "Incremental",
+        "parameters": {
+          "location": {
+            "value": "[parameters('location')]"
+          },
+          "appName": {
+            "value": "[variables('appName')]"
+          },
+          "tags": {
+            "value": "[union(variables('tags'), createObject('asa-service-name', variables('appName')))]"
+          },
+          "asaInstanceName": {
+            "value": "[concat(variables('asaInstanceName'), '-', parameters('plan'))]"
+          },
+          "appInsightName": {
+            "value": "[variables('applicationInsightsName')]"
+          },
+          "laWorkspaceResourceId": {
+            "value": "[reference(extensionResourceId(format('/subscriptions/{0}/resourceGroups/{1}', subscription().subscriptionId, resourceGroup().name), 'Microsoft.Resources/deployments', format('{0}--monitoring', deployment().name)), '2022-09-01').outputs.logAnalyticsWorkspaceId.value]"
+          },
+          "environmentVariables": {
+            "value": {
+              "SERVICE_BUS_CONNECTION_STRING": "[reference(extensionResourceId(format('/subscriptions/{0}/resourceGroups/{1}', subscription().subscriptionId, resourceGroup().name), 'Microsoft.Resources/deployments', format('{0}--sb', deployment().name)), '2022-09-01').outputs.SERVICE_BUS_CONNECTION_STRING.value]"
+            }
+          },
+          "userAssignedManagedIdentityName": {
+            "value": "[concat(variables('userAssignedManagedIdentityName'), '-', parameters('plan'))]"
+          }
+        },
+        "templateLink": {
+          "relativePath": "azuredeploy/enterprise.json",
+          "contentVersion":"1.0.0.0"
+        },
+        "dependsOn": [
+          "[extensionResourceId(format('/subscriptions/{0}/resourceGroups/{1}', subscription().subscriptionId, resourceGroup().name), 'Microsoft.Resources/deployments', format('{0}--monitoring', deployment().name))]",
+          "[extensionResourceId(format('/subscriptions/{0}/resourceGroups/{1}', subscription().subscriptionId, resourceGroup().name), 'Microsoft.Resources/deployments', format('{0}--sb', deployment().name))]"
+        ]
+      }
     }
   ]
 }
