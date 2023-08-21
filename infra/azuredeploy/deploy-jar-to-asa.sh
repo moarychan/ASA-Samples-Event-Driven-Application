@@ -33,7 +33,7 @@ if [[ -z "$ASA_SERVICE_NAME" ]]; then
   exit 1
 fi
 
-jar_file_name="simple-todo-web-0.0.1.jar"
+jar_file_name="simple-event-driven-app-0.0.1.jar"
 source_url="https://github.com/Azure-Samples/ASA-Samples-Event-Driven-Application/releases/download/v0.0.1/$jar_file_name"
 auth_header="no-auth"
 
@@ -46,7 +46,7 @@ else
 fi
 
 az extension add --name spring --upgrade
-az spring app deploy --resource-group $RESOURCE_GROUP --service $ASA_SERVICE_NAME --name simple-todo-web --artifact-path $jar_file_name
+az spring app deploy --resource-group $RESOURCE_GROUP --service $ASA_SERVICE_NAME --name simple-event-driven-app --artifact-path $jar_file_name
 
 # Delete uami generated before exiting the script
 az identity delete --ids ${AZ_SCRIPTS_USER_ASSIGNED_IDENTITY}
