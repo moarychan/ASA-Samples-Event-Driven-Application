@@ -51,7 +51,7 @@
     },
     {
       "type": "Microsoft.AppPlatform/Spring/monitoringSettings",
-      "apiVersion": "2023-03-01-preview",
+      "apiVersion": "2023-05-01-preview",
       "name": "[format('{0}/{1}', parameters('asaInstanceName'), 'default')]",
       "properties": {
         "traceEnabled": true,
