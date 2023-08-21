@@ -456,7 +456,7 @@
                     {
                       "type": "Microsoft.Resources/deployments",
                       "apiVersion": "2022-09-01",
-                      "name": "[format('{0}--dashboard', deployment().name)]",
+                      "name": "[format('{0}--dash', deployment().name)]",
                       "properties": {
                         "expressionEvaluationOptions": {
                           "scope": "inner"
