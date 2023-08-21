@@ -1780,7 +1780,7 @@
             "value": "[concat(variables('asaInstanceName'), '-', parameters('plan'))]"
           },
           "logAnalyticsName": {
-            "value": "[parameters('logAnalyticsName')]"
+            "value": "[variables('logAnalyticsName')]"
           },
           "appInsightName": {
             "value": "[reference(extensionResourceId(format('/subscriptions/{0}/resourceGroups/{1}', subscription().subscriptionId, resourceGroup().name), 'Microsoft.Resources/deployments', format('{0}--ai', deployment().name)), '2022-09-01').outputs.applicationInsightsName.value]"
