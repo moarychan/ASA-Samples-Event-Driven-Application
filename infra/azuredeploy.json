@@ -1762,10 +1762,10 @@
             "value": "[variables('logAnalyticsName')]"
           },
           "appInsightName": {
-            "value": "[reference(extensionResourceId(format('/subscriptions/{0}/resourceGroups/{1}', subscription().subscriptionId, resourceGroup().name), 'Microsoft.Resources/deployments', format('{0}--ai', deployment().name)), '2022-09-01').outputs.applicationInsightsName.value]"
+            "value": "[reference(extensionResourceId(format('/subscriptions/{0}/resourceGroups/{1}', subscription().subscriptionId, resourceGroup().name), 'Microsoft.Resources/deployments', format('{0}--monitoring--ai', deployment().name)), '2022-09-01').outputs.applicationInsightsName.value]"
           },
           "laWorkspaceResourceId": {
-            "value": "[reference(extensionResourceId(format('/subscriptions/{0}/resourceGroups/{1}', subscription().subscriptionId, resourceGroup().name), 'Microsoft.Resources/deployments', format('{0}--la', deployment().name)), '2022-09-01').outputs.logAnalyticsWorkspaceId.value]"
+            "value": "[reference(extensionResourceId(format('/subscriptions/{0}/resourceGroups/{1}', subscription().subscriptionId, resourceGroup().name), 'Microsoft.Resources/deployments', format('{0}--monitoring--la', deployment().name)), '2022-09-01').outputs.logAnalyticsWorkspaceId.value]"
           },
           "environmentVariables": {
             "value": {
@@ -1806,10 +1806,10 @@
             "value": "[concat(variables('asaInstanceName'), '-', parameters('plan'))]"
           },
           "appInsightName": {
-            "value": "[reference(extensionResourceId(format('/subscriptions/{0}/resourceGroups/{1}', subscription().subscriptionId, resourceGroup().name), 'Microsoft.Resources/deployments', format('{0}--ai', deployment().name)), '2022-09-01').outputs.applicationInsightsName.value]"
+            "value": "[reference(extensionResourceId(format('/subscriptions/{0}/resourceGroups/{1}', subscription().subscriptionId, resourceGroup().name), 'Microsoft.Resources/deployments', format('{0}--monitoring--ai', deployment().name)), '2022-09-01').outputs.applicationInsightsName.value]"
           },
           "laWorkspaceResourceId": {
-            "value": "[reference(extensionResourceId(format('/subscriptions/{0}/resourceGroups/{1}', subscription().subscriptionId, resourceGroup().name), 'Microsoft.Resources/deployments', format('{0}--la', deployment().name)), '2022-09-01').outputs.logAnalyticsWorkspaceId.value]"
+            "value": "[reference(extensionResourceId(format('/subscriptions/{0}/resourceGroups/{1}', subscription().subscriptionId, resourceGroup().name), 'Microsoft.Resources/deployments', format('{0}--monitoring--la', deployment().name)), '2022-09-01').outputs.logAnalyticsWorkspaceId.value]"
           },
           "environmentVariables": {
             "value": {
