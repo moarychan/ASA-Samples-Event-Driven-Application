@@ -1779,7 +1779,11 @@
         "templateLink": {
           "relativePath": "azuredeploy/consumption.json",
           "contentVersion":"1.0.0.0"
-        }
+        },
+        "dependsOn": [
+          "[extensionResourceId(format('/subscriptions/{0}/resourceGroups/{1}', subscription().subscriptionId, resourceGroup().name), 'Microsoft.Resources/deployments', format('{0}--monitoring', deployment().name))]",
+          "[extensionResourceId(format('/subscriptions/{0}/resourceGroups/{1}', subscription().subscriptionId, resourceGroup().name), 'Microsoft.Resources/deployments', format('{0}--sb', deployment().name))]"
+        ]
       }
     },
     {
@@ -1823,7 +1827,11 @@
         "templateLink": {
           "relativePath": "azuredeploy/standard.json",
           "contentVersion":"1.0.0.0"
-        }
+        },
+        "dependsOn": [
+          "[extensionResourceId(format('/subscriptions/{0}/resourceGroups/{1}', subscription().subscriptionId, resourceGroup().name), 'Microsoft.Resources/deployments', format('{0}--monitoring', deployment().name))]",
+          "[extensionResourceId(format('/subscriptions/{0}/resourceGroups/{1}', subscription().subscriptionId, resourceGroup().name), 'Microsoft.Resources/deployments', format('{0}--sb', deployment().name))]"
+        ]
       }
     }
   ]
