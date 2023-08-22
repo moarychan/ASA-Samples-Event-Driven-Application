@@ -29,9 +29,10 @@ Let's jump in and get the event-driven app up and running in Azure. When you are
 
 | Deploy to Azure Spring Apps | |
 |--|--|
-| Consumption plan   |[![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure-Samples%2FASA-Samples-Event-Driven-Application%2Fmain%2Finfra%2Fazuredeploy-asa-consumption.json)|
-| Basic/Standard plan|[![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure-Samples%2FASA-Samples-Event-Driven-Application%2Fmain%2Finfra%2Fazuredeploy-asa-standard.json)|
-| Enterprise plan    |[![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure-Samples%2FASA-Samples-Event-Driven-Application%2Fmain%2Finfra%2Fazuredeploy-asa-enterprise.json)|
+| Test|[![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fmoarychan%2FASA-Samples-Event-Driven-Application%2Fmoary%2Fevent-driven%2Fsupport-deploy-to-azure-button%2Finfra%2Ftest.json)|
+| Consumption plan|[![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fmoarychan%2FASA-Samples-Event-Driven-Application%2Fmoary%2Fevent-driven%2Fsupport-deploy-to-azure-button%2Finfra%2Fazuredeploy-asa-consumption.json)|
+| Basic/Standard plan|[![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fmoarychan%2FASA-Samples-Event-Driven-Application%2Fmoary%2Fevent-driven%2Fsupport-deploy-to-azure-button%2Finfra%2Fazuredeploy-asa-standard.json)|
+| Enterprise plan|[![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fmoarychan%2FASA-Samples-Event-Driven-Application%2Fmoary%2Fevent-driven%2Fsupport-deploy-to-azure-button%2Finfra%2Fazuredeploy-asa-enterprise.json)|
 
 ### Prerequisites
 
