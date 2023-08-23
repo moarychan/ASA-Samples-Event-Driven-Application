@@ -314,7 +314,7 @@
       "name": "[variables('name_deploymentScriptName')]",
       "location": "[parameters('location')]",
       "dependsOn": [
-        "[resourceId('Microsoft.AppPlatform/Spring/buildservices/builders/buildpackBindings', parameters('asaInstanceName'), '/default', '/default', '/default')]",
+        "[resourceId('Microsoft.AppPlatform/Spring/buildservices/builders/buildpackBindings', parameters('asaInstanceName'), 'default', 'default', 'default')]",
         "[resourceId('Microsoft.Authorization/roleAssignments', variables('name_roleAssignmentName'))]",
         "[resourceId('Microsoft.AppPlatform/Spring/apps/deployments', parameters('asaInstanceName'), parameters('appName'), 'default')]"
       ],
