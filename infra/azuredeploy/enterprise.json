@@ -300,7 +300,7 @@
         "launchProperties": {
           "properties": {
             "sampling_percentage": 10,
-            "secrets": "[reference(resourceId('Microsoft.Insights/components', parameters('appInsightName')), '2020-02-02').ConnectionString]"
+            "connection_string": "[reference(resourceId('Microsoft.Insights/components', parameters('appInsightName')), '2020-02-02').ConnectionString]"
           }
         }
       },
