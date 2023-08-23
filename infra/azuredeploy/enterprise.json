@@ -290,7 +290,7 @@
     {
       "type": "Microsoft.AppPlatform/Spring/buildservices/builders/buildpackBindings",
       "apiVersion": "2023-05-01-preview",
-      "name": "[concat(parameters('asaInstanceName'), '/default/default/default'))]",
+      "name": "[concat(parameters('asaInstanceName'), '/default/default/default')]",
       "dependsOn": [
         "[resourceId('Microsoft.AppPlatform/Spring', parameters('name'))]",
         "[resourceId('Microsoft.AppPlatform/Spring/apps/deployments', parameters('asaInstanceName'), parameters('appName'), 'default')]"
@@ -314,7 +314,7 @@
       "name": "[variables('name_deploymentScriptName')]",
       "location": "[parameters('location')]",
       "dependsOn": [
-        "[resourceId('Microsoft.AppPlatform/Spring/buildservices/builders/buildpackBindings', concat(parameters('asaInstanceName'), '/default/default/default')))]",
+        "[resourceId('Microsoft.AppPlatform/Spring/buildservices/builders/buildpackBindings', concat(parameters('asaInstanceName'), '/default/default/default'))]",
         "[resourceId('Microsoft.Authorization/roleAssignments', variables('name_roleAssignmentName'))]",
         "[resourceId('Microsoft.AppPlatform/Spring/apps/deployments', parameters('asaInstanceName'), parameters('appName'), 'default')]"
       ],
