@@ -287,14 +287,30 @@
       }
     },
     {
+      "type": "Microsoft.AppPlatform/Spring/buildservices/builders/buildpackBindings",
+      "apiVersion": "2023-05-01-preview",
+      "name": "[concat(parameters('asaInstanceName'), '/default/default/default')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.Resources/deploymentScripts', variables('const_checkingBuilderStateDeploymentName'))]"
+      ],
+      "properties": {
+        "bindingType": "ApplicationInsights",
+        "launchProperties": {
+          "properties": {
+            "sampling_percentage": 10,
+            "connection_string": "[reference(resourceId('Microsoft.Insights/components', parameters('appInsightName')), '2020-02-02').ConnectionString]"
+          }
+        }
+      }
+    },
+    {
       "type": "Microsoft.Resources/deploymentScripts",
       "apiVersion": "2020-10-01",
       "name": "[variables('name_deploymentScriptName')]",
       "location": "[parameters('location')]",
       "dependsOn": [
-        "[resourceId('Microsoft.Resources/deploymentScripts', variables('const_checkingBuilderStateDeploymentName'))]",
-        "[resourceId('Microsoft.Authorization/roleAssignments', variables('name_roleAssignmentName'))]",
-        "[resourceId('Microsoft.AppPlatform/Spring/apps/deployments', parameters('asaInstanceName'), parameters('appName'), 'default')]"
+        "[resourceId('Microsoft.AppPlatform/Spring/buildservices/builders/buildpackBindings', parameters('asaInstanceName'), 'default', 'default', 'default')]",
+        "[resourceId('Microsoft.Authorization/roleAssignments', variables('name_roleAssignmentName'))]"
       ],
       "kind": "AzureCLI",
       "identity": {
