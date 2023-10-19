@@ -59,7 +59,7 @@ echo "Upload '$source_url' to '$storage_account_name' at '$storage_endpoint/$sha
 
 echo "az storage file upload -s $share_name --source $path --account-name  $storage_account_name --file-endpoint $storage_endpoint --sas-token $sas_token -p $folder"
 
-az storage file upload -s $share_name --source $path --account-name  $storage_account_name --file-endpoint "$storage_endpoint" --sas-token "$sas_token"  -p "$folder"
+az storage file upload fail -s $share_name --source $path --account-name  $storage_account_name --file-endpoint "$storage_endpoint" --sas-token "$sas_token"  -p "$folder"
 
 # Write outputs to deployment script output path
 result=$(jq -n -c --arg relativePath $relative_path '{relativePath: $relativePath}')
